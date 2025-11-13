@@ -370,9 +370,9 @@ class PaymentService
      */
     protected function applyCustomerFieldsHook(array $customer, array $originalData): array
     {
-        // This allows developers to add custom logic via events/listeners
-        // Example: event(new CustomerFieldsModifying($customer, $originalData));
-        return $customer;
+        $event = new \NmDigitalHub\LaravelSumitPayment\Events\Hooks\CustomerFields($customer, $originalData);
+        event($event);
+        return $event->getValue();
     }
 
     /**
@@ -380,9 +380,9 @@ class PaymentService
      */
     protected function applyMaximumInstallmentsHook(int $maxPayments, float $amount): int
     {
-        // This allows developers to add custom logic via events/listeners
-        // Example: event(new MaximumInstallmentsCalculating($maxPayments, $amount));
-        return $maxPayments;
+        $event = new \NmDigitalHub\LaravelSumitPayment\Events\Hooks\MaximumInstallments($maxPayments, $amount);
+        event($event);
+        return $event->getValue();
     }
 
     /**
