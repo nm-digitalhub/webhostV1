@@ -207,7 +207,7 @@ class RecurringBillingService
      */
     protected function calculateNextBillingDate(string $frequency, $from = null): string
     {
-        $date = $from ? now()->parse($from) : now();
+        $date = $from ? \Carbon\Carbon::parse($from) : now();
 
         return match($frequency) {
             'daily' => $date->addDay()->toDateString(),
@@ -225,7 +225,7 @@ class RecurringBillingService
     {
         $dueSubscriptions = Transaction::where('is_subscription', true)
             ->where('status', 'active')
-            ->whereRaw("JSON_EXTRACT(metadata, '$.next_billing_date') <= ?", [now()->toDateString()])
+            ->where('metadata->next_billing_date', '<=', now()->toDateString())
             ->get();
 
         $results = [

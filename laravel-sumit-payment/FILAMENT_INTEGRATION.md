@@ -7,7 +7,7 @@ This guide explains how to integrate the SUMIT Payment Gateway with Filament Adm
 1. **Install Filament** (if not already installed):
 
 ```bash
-composer require filament/filament:"^3.0"
+composer require filament/filament:"^4.1"
 ```
 
 2. **Register the Plugin** in your Filament Panel Provider (e.g., `app/Providers/Filament/AdminPanelProvider.php`):

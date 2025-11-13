@@ -121,23 +121,28 @@ class TransactionResource extends Resource
                 Tables\Columns\TextColumn::make('currency')
                     ->label('Currency')
                     ->searchable(),
-                Tables\Columns\BadgeColumn::make('status')
+                Tables\Columns\TextColumn::make('status')
                     ->label('Status')
-                    ->colors([
-                        'warning' => 'pending',
-                        'success' => 'completed',
-                        'danger' => 'failed',
-                        'info' => 'authorized',
-                        'secondary' => 'cancelled',
-                        'primary' => 'active',
-                    ])
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pending' => 'warning',
+                        'completed' => 'success',
+                        'failed' => 'danger',
+                        'authorized' => 'info',
+                        'cancelled' => 'gray',
+                        'active' => 'primary',
+                        default => 'gray',
+                    })
                     ->sortable(),
-                Tables\Columns\BadgeColumn::make('type')
+                Tables\Columns\TextColumn::make('type')
                     ->label('Type')
-                    ->colors([
-                        'primary' => 'payment',
-                        'success' => 'subscription',
-                        'warning' => 'refund',
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'payment' => 'primary',
+                        'subscription' => 'success',
+                        'refund' => 'warning',
+                        default => 'gray',
+                    }),
                     ]),
                 Tables\Columns\IconColumn::make('is_subscription')
                     ->label('Subscription')

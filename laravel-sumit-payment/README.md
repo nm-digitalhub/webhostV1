@@ -22,7 +22,7 @@ A comprehensive Laravel package for integrating SUMIT payment gateway with your 
 - PHP 8.1 or higher
 - Laravel 11.x or 12.x
 - SUMIT merchant account
-- (Optional) Filament 3.x for admin panel integration
+- (Optional) Filament 4.x for admin panel integration
 
 ## Installation
 
@@ -424,7 +424,7 @@ This package includes full integration with Filament Admin Panel for managing pa
 
 1. Install Filament (if not already installed):
 ```bash
-composer require filament/filament:"^3.0"
+composer require filament/filament:"^4.1"
 ```
 
 2. Register the plugin in your Filament Panel Provider:

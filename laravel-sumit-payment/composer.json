@@ -23,7 +23,7 @@
         "laravel/framework": "^11.0|^12.0",
         "guzzlehttp/guzzle": "^7.0",
         "spatie/laravel-settings": "^3.0",
-        "filament/filament": "^3.0"
+        "filament/filament": "^4.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.0|^11.0",

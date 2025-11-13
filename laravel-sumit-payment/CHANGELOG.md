@@ -2,6 +2,20 @@
 
 All notable changes to the SUMIT Laravel Payment Gateway package will be documented in this file.
 
+## [2.0.1] - 2024-11-13
+
+### Fixed
+- Fixed PaymentStatusChanged event dispatching incorrect old status in WebhookController (captured before update)
+- Fixed Carbon date parsing in RecurringBillingService using proper Carbon::parse() method
+- Improved database compatibility by replacing MySQL-specific JSON_EXTRACT with Laravel's JSON query syntax
+- Fixed webhook route middleware configuration (changed from array to string parameter)
+- Updated Filament dependency to v4.1 for latest compatibility
+
+### Changed
+- Upgraded Filament from v3.0 to v4.1
+- Updated TransactionResource to use TextColumn with badge() instead of deprecated BadgeColumn
+- Updated all documentation to reference Filament v4.1
+
 ## [2.0.0] - 2024-11-13
 
 ### Added

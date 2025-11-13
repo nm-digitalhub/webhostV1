@@ -77,6 +77,8 @@ class WebhookController extends Controller
             $transaction = Transaction::where('transaction_id', $transactionId)->first();
             
             if ($transaction && $transaction->status !== 'completed') {
+                $oldStatus = $transaction->status;
+                
                 $transaction->update([
                     'status' => 'completed',
                     'metadata' => array_merge($transaction->metadata ?? [], [
@@ -85,7 +87,7 @@ class WebhookController extends Controller
                     ]),
                 ]);
 
-                Event::dispatch(new PaymentStatusChanged($transaction, 'completed', $transaction->status));
+                Event::dispatch(new PaymentStatusChanged($transaction, 'completed', $oldStatus));
             }
         }
     }
@@ -102,6 +104,7 @@ class WebhookController extends Controller
             
             if ($transaction) {
                 $errorMessage = $data['ErrorMessage'] ?? $data['error_message'] ?? 'Payment failed';
+                $oldStatus = $transaction->status;
                 
                 $transaction->update([
                     'status' => 'failed',
@@ -112,7 +115,7 @@ class WebhookController extends Controller
                     ]),
                 ]);
 
-                Event::dispatch(new PaymentStatusChanged($transaction, 'failed', $transaction->status));
+                Event::dispatch(new PaymentStatusChanged($transaction, 'failed', $oldStatus));
             }
         }
     }
@@ -154,6 +157,8 @@ class WebhookController extends Controller
             $transaction = Transaction::where('transaction_id', $transactionId)->first();
             
             if ($transaction && $transaction->status !== 'authorized') {
+                $oldStatus = $transaction->status;
+                
                 $transaction->update([
                     'status' => 'authorized',
                     'metadata' => array_merge($transaction->metadata ?? [], [
@@ -162,7 +167,7 @@ class WebhookController extends Controller
                     ]),
                 ]);
 
-                Event::dispatch(new PaymentStatusChanged($transaction, 'authorized', $transaction->status));
+                Event::dispatch(new PaymentStatusChanged($transaction, 'authorized', $oldStatus));
             }
         }
     }

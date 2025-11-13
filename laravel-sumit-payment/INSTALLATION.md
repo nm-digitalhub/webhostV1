@@ -568,7 +568,7 @@ If you want to use the Filament admin panel integration:
 1. **Install Filament** (if not already installed):
 
 ```bash
-composer require filament/filament:"^3.0"
+composer require filament/filament:"^4.1"
 php artisan filament:install --panels
 ```
 

@@ -23,7 +23,7 @@ Route::prefix($prefix)->middleware($middleware)->group(function () {
     // Webhook routes (no auth middleware - external service)
     Route::post('/webhook', [WebhookController::class, 'handle'])
         ->name('sumit.webhook.handle')
-        ->withoutMiddleware(['web']);
+        ->withoutMiddleware('web');
 
     // Token management routes (requires authentication)
     Route::middleware(['auth'])->group(function () {
