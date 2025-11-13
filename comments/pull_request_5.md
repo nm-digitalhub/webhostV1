@@ -1,0 +1,1 @@
+It is required to clarify and implement the use of https://github.com/spatie/laravel-settings. Ensure all configuration is dynamic and integrated securely using this package.
